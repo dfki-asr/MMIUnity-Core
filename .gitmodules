@@ -1,0 +1,3 @@
+[submodule ".\\Runtime\\MMICSharp-Core"]
+	path = .\\Runtime\\MMICSharp-Core
+	url = ../MMICSharp-Core

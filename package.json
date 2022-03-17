@@ -1,0 +1,22 @@
+{
+  "name": "de.dfki.mmiunity-core",
+  "version": "0.0.1",
+  "displayName": "MMIUnityCore",
+  "description": "This is the MMIUnity-Core package. ",
+  "unity": "2019.4",
+  "documentationUrl": "https://mosim.eu",
+  "changelogUrl": "https://mosim.eu/changelog.html",
+  "licensesUrl": "https://mosim.eu/licensing.html",
+  "dependencies": {
+	},
+ "keywords": [
+    "MOSIM",
+	"Animation"
+  ],
+  "author": {
+    "name": "Janis Sprenger",
+    "email": "janis.sprenger@dfki.de",
+    "url": "https://www.dfki.de"
+  }
+}
+
