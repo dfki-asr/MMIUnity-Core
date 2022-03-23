@@ -112,13 +112,13 @@ namespace MMIAdapterUnity
                 try
                 {
                     Assembly assembly = Assembly.LoadFile(filePath);
-
-                    //Find the class type which implements the IMotionModelInterface
-                    Type classType = assembly.GetTypes().ToList().Find(s => s.GetInterfaces().Contains(typeof(IMotionModelUnitDev)));
+                    
+                    Type classType = FindMMUType(assembly);
+                    
                     if (classType != null)
                     {
                         //Add the script to the game object
-                        mmu = mmuObj.AddComponent(classType) as IMotionModelUnitDev;
+                        mmu = (MMICSharp.Common.IMotionModelUnitDev) mmuObj.AddComponent(classType); //as IMotionModelUnitDev;
 
                         ///Loading and assigning the configuration file
                         if (mmuObj.GetComponent<UnityMMUBase>() != null)
@@ -202,6 +202,28 @@ namespace MMIAdapterUnity
             }
 
             return false;
+        }
+
+        private Type FindMMUType(Assembly assembly)
+        {
+            foreach (Type t in assembly.GetTypes().ToList())
+            {
+                foreach (Type i in t.GetInterfaces())
+                {
+                    string name = i.Name;
+                    if (name == "IMotionModelUnitDev")
+                    {
+                        return t;
+                    }
+                    if (i == typeof(MMICSharp.Common.IMotionModelUnitDev))
+                    {
+                        return t;
+                    }
+                }
+            }
+            //Find the class type which implements the IMotionModelInterface
+            Type classType = assembly.GetTypes().ToList().Find(s => s.GetInterfaces().Contains(typeof(IMotionModelUnitDev)));
+            return classType;
         }
     }
 

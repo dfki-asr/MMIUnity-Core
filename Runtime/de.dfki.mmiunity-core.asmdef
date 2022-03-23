@@ -1,6 +1,6 @@
 {
     "name": "dfki.mmiunity-core",
-    "references": [],
+    "references": ["System.IO.Compression"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
