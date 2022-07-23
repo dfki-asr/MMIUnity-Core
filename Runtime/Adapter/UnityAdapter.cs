@@ -218,6 +218,7 @@ namespace MMIAdapterUnity
             {
                 Debug.Log("Problem at disposing server!");
             }
+            MMICSharp.MMICSharp_Core.MMICore.Common.Tools.TimeProfiler.CloseLoggers();
         }
 
 
