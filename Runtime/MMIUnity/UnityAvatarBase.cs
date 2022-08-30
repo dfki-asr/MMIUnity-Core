@@ -270,6 +270,9 @@ namespace MMIUnity
 
                 p = MMICSharp.Common.Communication.Serialization.FromJsonString<MAvatarPosture>(s); //JsonConvert.DeserializeObject<MAvatarPosture>(s);
                 p.AvatarID = id;
+            } else
+            {
+                MMICSharp.Logger.LogError($"Error! Retargeting Config not found at {this.ConfigurationFilePath}!");
             }
 
             return this.SetupRetargeting(id, p);
