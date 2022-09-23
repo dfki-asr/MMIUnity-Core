@@ -64,6 +64,8 @@ namespace MMIUnity
         /// </summary>
         public string ConfigurationFilePath = "configurations/avatar.mos";
 
+        public bool AutoLoadConfigFile = true;
+
         #region bone mapping
 
         public Dictionary<string, MJointType> bonenameMap;
@@ -264,7 +266,7 @@ namespace MMIUnity
         public virtual MAvatarPosture SetupRetargeting(string id)
         {
             MAvatarPosture p = null;
-            if (System.IO.File.Exists(this.ConfigurationFilePath))
+            if (AutoLoadConfigFile && System.IO.File.Exists(this.ConfigurationFilePath))
             {
                 string s = System.IO.File.ReadAllText(this.ConfigurationFilePath);
 
@@ -372,7 +374,7 @@ namespace MMIUnity
                 this.RootTransform.rotation = Quaternion.Euler(currentEulerRoot.x, globalRootBoneRotation.ToQuaternion().eulerAngles.y - 90.0f, currentEulerRoot.z);
                 //this.RootBone.transform.rotation = globalRootBoneRotation.ToQuaternion();
 
-                MTransform CharTransform = new MTransform("tmp", this.RootTransform.position.ToMVector3(), this.RootTransform.rotation.ToMQuaternion());
+                MTransform CharTransform = new MTransform("tmp", this.RootTransform.position.ToMVector3(), this.RootTransform.rotation.ToMQuaternion(), MVector3Extensions.One());
             }
             */
 
