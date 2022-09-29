@@ -163,7 +163,7 @@ namespace MMIUnity
                             Vector3 trg = Quaternion.Inverse(t.parent.rotation) * ((t.GetChild(0).position - t.position).normalized);
                             Quaternion q = Quaternion.FromToRotation(src, trg);
                             //t.localRotation = q;
-                            t.rotation = t.parent.rotation * q;
+                            //t.rotation = t.parent.rotation * q;
 
                             t.GetChild(0).position = trgPos;
                             t.GetChild(0).rotation = trgRot;
