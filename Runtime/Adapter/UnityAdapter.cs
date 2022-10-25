@@ -33,6 +33,7 @@ namespace MMIAdapterUnity
         private SessionCleaner sessionCleaner;
         private SessionData sessionData;
         private readonly MIPAddress address = new MIPAddress("127.0.0.1", 8900);
+        private MIPAddress addressInt = null;
         private readonly MIPAddress mmiRegisterAddress = new MIPAddress("127.0.0.1", 8900);
         private AdapterController adapterController;
 
@@ -120,7 +121,7 @@ namespace MMIAdapterUnity
             };
 
             //Create a new adapter controller which listens on the file system and scans for MMUs
-            this.adapterController = new AdapterController(this.sessionData, adapterDescription, mmiRegisterAddress, new FileBasedMMUProvider(sessionData, mmuPath ,  "UnityC#", "Unity"), new UnityMMUInstantiator());
+            this.adapterController = new AdapterController(this.sessionData, adapterDescription, mmiRegisterAddress, new FileBasedMMUProvider(sessionData, mmuPath ,  "UnityC#", "Unity"), new UnityMMUInstantiator(), aint:addressInt);
 
 
             //Log the startup info text
@@ -161,6 +162,22 @@ namespace MMIAdapterUnity
                       Debug.Log("Address: " + v);
                   }
                 },
+
+                 { "aint|addressInternal=", "The address of the hostet tcp server.",
+                  v =>
+                  {
+                      //Split the address to get the ip and port
+                      string[] addr  = v.Split(':');
+
+                      if(addr.Length == 2)
+                      {
+                          addressInt = new MIPAddress();
+                          addressInt.Address = addr[0];
+                          addressInt.Port = int.Parse(addr[1]);
+                      }
+                  }
+                },
+
 
                 { "r|raddress=", "The address of the register which holds the central information.",
                   v =>

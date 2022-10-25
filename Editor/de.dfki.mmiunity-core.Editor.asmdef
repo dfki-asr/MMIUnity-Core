@@ -1,6 +1,6 @@
 {
     "name": "dfki.mmiunity-core.Editor",
-    "references": ["dfki.mmiunity-core", "System.IO.Compression"],
+    "references": ["dfki.mmiunity-core"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
