@@ -125,7 +125,7 @@ namespace MMIAdapterUnity
 
 
             //Log the startup info text
-            MMICSharp.Logger.Log(MMICSharp.Log_level.L_INFO, $"Hosting thrift server at {this.address.Address} {this.address.Port}: ");
+            MMICSharp.Logger.Log(MMICSharp.Log_level.L_INFO, $"Registering adapter at launcher as {this.address.Address} {this.address.Port}: ");
         }
 
         private void Start()
