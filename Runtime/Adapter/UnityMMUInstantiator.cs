@@ -28,11 +28,11 @@ namespace MMIAdapterUnity
         /// <returns></returns>
         public IMotionModelUnitDev InstantiateMMU(MMULoadingProperty mmuLoadingProperty)
         {
+            string filePath = System.IO.Path.GetFullPath(mmuLoadingProperty.Path);
 
-            Debug.Log("Calling Unity MMU instantiator " + mmuLoadingProperty.Path);
+            Debug.Log("Calling Unity MMU instantiator " + filePath);
 
             MMUDescription mmuDescription = mmuLoadingProperty.Description;
-            string filePath = mmuLoadingProperty.Path;
 
             //Check if the MMU supports the specified language
             if (mmuDescription.Language != "UnityC#" && mmuDescription.Language != "Unity")
@@ -52,7 +52,7 @@ namespace MMIAdapterUnity
             //Get the paths
             string folderPath = System.IO.Directory.GetParent(filePath).ToString();
             string assetBundlePath = folderPath + "\\" + mmuDescription.Dependencies[0].Name;
-
+            assetBundlePath = System.IO.Path.GetFullPath(assetBundlePath);
 
             //Perform on unity main thread
             MainThreadDispatcher.Instance.ExecuteBlocking(delegate
@@ -67,6 +67,7 @@ namespace MMIAdapterUnity
                 {
                     if (!mmuLoadingProperty.Data.ContainsKey(assetBundlePath))
                     {
+                        MMICSharp.Logger.Log(Log_level.L_DEBUG, $"Loading asset bundle from {assetBundlePath}");
                         mmuAssetBundle = AssetBundle.LoadFromFile(assetBundlePath);
                         if (mmuAssetBundle == null)
                         {
