@@ -159,7 +159,7 @@ namespace MMIAdapterUnity
                           this.address.Address = addr[0];
                           this.address.Port = int.Parse(addr[1]);
                       }
-                      Debug.Log("Address: " + v);
+                      MMICSharp.Logger.LogDebug("Address: " + v);
                   }
                 },
 
@@ -190,7 +190,7 @@ namespace MMIAdapterUnity
                           mmiRegisterAddress.Address = addr[0];
                           mmiRegisterAddress.Port = int.Parse(addr[1]);
                       }
-                      Debug.Log("Register address: " + v);
+                      MMICSharp.Logger.LogDebug("Register address: " + v);
                   }
                 },
 
@@ -198,7 +198,7 @@ namespace MMIAdapterUnity
                   v =>
                   {
                       mmuPath = v;
-                      Debug.Log("MMUpath: " + v);
+                      MMICSharp.Logger.LogDebug("MMUpath: " + v);
                   }
                 },
             };
@@ -209,9 +209,9 @@ namespace MMIAdapterUnity
                 return true;
             }
 
-            catch (Exception)
+            catch (Exception e)
             {
-                Debug.Log("Cannot parse arguments");
+                MMICSharp.Logger.LogError($"Cannot parse arguments: {e.Message}");
             }
 
             return false;
@@ -233,7 +233,7 @@ namespace MMIAdapterUnity
             }
             catch (Exception e)
             {
-                Debug.Log("Problem at disposing server!");
+                MMICSharp.Logger.LogError($"Problem at disposing server! {e.Message}");
             }
         }
 

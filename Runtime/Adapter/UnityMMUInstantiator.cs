@@ -132,6 +132,11 @@ namespace MMIAdapterUnity
                             //By default set the configuration file path and define it globally
                             string avatarConfigFilePath = AppDomain.CurrentDomain.BaseDirectory + "/" + "avatar.mos";
 
+                            if(Application.isEditor)
+                            {
+                                avatarConfigFilePath = System.IO.Directory.GetParent(Application.dataPath) + "/configurations/" + "avatar.mos";
+                            }
+
                             //Check if the MMU has a custom configuration file
                             if (this.GetLocalAvatarConfigurationFile(folderPath, out string localConfigFilePath))
                             {
