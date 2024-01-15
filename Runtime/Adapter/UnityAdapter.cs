@@ -121,7 +121,9 @@ namespace MMIAdapterUnity
             };
 
             //Create a new adapter controller which listens on the file system and scans for MMUs
-            this.adapterController = new AdapterController(this.sessionData, adapterDescription, mmiRegisterAddress, new FileBasedMMUProvider(sessionData, mmuPath ,  "UnityC#", "Unity"), new UnityMMUInstantiator(), aint:addressInt);
+            var instantiator = new UnityMMUInstantiator();
+            var adapterImpl = new MMIUnity.UnityAdapterImplementation(sessionData, instantiator);
+            this.adapterController = new AdapterController(this.sessionData, adapterDescription, mmiRegisterAddress, new FileBasedMMUProvider(sessionData, mmuPath ,  "UnityC#", "Unity"), instantiator, aint:addressInt, customAdapterImplementation:adapterImpl);
 
 
             //Log the startup info text
