@@ -37,6 +37,10 @@ namespace MMIAdapterUnity
         private readonly MIPAddress mmiRegisterAddress = new MIPAddress("127.0.0.1", 8900);
         private AdapterController adapterController;
 
+        public int EditorPort = 8998;
+        public int EditorRegistry = 9009;
+
+
         #endregion
 
         /// <summary>
@@ -77,9 +81,9 @@ namespace MMIAdapterUnity
             //Only use this if self_hosted and within edit mode -> Otherwise the launcher which starts the service assigns the address and port
 #if UNITY_EDITOR
         this.address.Address = "127.0.0.1";
-        this.address.Port = 8950;
+        this.address.Port = EditorPort;
 
-        this.mmiRegisterAddress.Port = 9009;
+        this.mmiRegisterAddress.Port = EditorRegistry;
         this.mmiRegisterAddress.Address = "127.0.0.1";
 #else
             //Parse the command line arguments

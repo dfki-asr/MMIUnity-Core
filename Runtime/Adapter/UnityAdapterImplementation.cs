@@ -151,7 +151,7 @@ namespace MMIUnity
             List<MMUWrapper> inst = new List<MMUWrapper>();
             foreach(var key in sessions[sessionID].instancesMMUs.Keys)
             {
-                if(key.Split(":")[0] == mmuID)
+                if(key.Split(':')[0] == mmuID)
                 {
                     inst.Add(sessions[sessionID].instancesMMUs[key]);
                 }
@@ -199,7 +199,7 @@ namespace MMIUnity
                     {
                         foreach(MMUWrapper muw in inst)
                         {
-                            if(muw.mmuID.Split(":")[1] == e.Reference)
+                            if(muw.mmuID.Split(':')[1] == e.Reference)
                             {
                                 RemoveInstMMU(muw, sessionID);
                                 break;

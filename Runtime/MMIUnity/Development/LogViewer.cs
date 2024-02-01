@@ -42,6 +42,9 @@ namespace MMIUnity.Development
             {
                 this.logString += mylog;
             }
+#if UNITY_EDITOR
+           // Debug.Log(this.logString);
+#endif
         }
 
         void OnGUI()
